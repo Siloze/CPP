@@ -15,6 +15,7 @@ void add_contact(Contact *file)
 		std::cin >> str;
 	}
 	str.clear();
+	str.erase()
 	while (str.empty() || !file->setLastName(str))
 	{
 		std::cout << "Last Name : " << std::endl;
