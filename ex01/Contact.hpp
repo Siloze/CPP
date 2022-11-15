@@ -10,14 +10,19 @@ class Contact {
         std::string lastname;
         std::string nickname;
         std::string phoneNb;
-
+        static int  _selected;
+        static int  _numberof;
     public :
         Contact(void);
         ~Contact(void);
-        std::string getFirstName(void) const;
-        std::string getLastName(void) const;
-        std::string getNickName(void) const;
-        std::string getPhoneNumber(void) const;
+        std::string getFirstName(int cut) const;
+        std::string getLastName(int cut) const;
+        std::string getNickName(int cut) const;
+        std::string getPhoneNumber(int cut) const;;
+        int         getSelected(void) const;
+        int         setSelected(int nb);
+        int         getNumberOf(void) const;
+        int         setNumberOf(int nb);
         int         setFirstName(std::string first);
         int         setLastName(std::string last);
         int         setNickName(std::string nick);

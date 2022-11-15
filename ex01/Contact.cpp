@@ -16,21 +16,102 @@ Contact::~Contact (void)
     return ;
 }
 
-std::string Contact::getFirstName(void) const
+std::string Contact::getFirstName(int cut) const
 {
-    return (this->firstname);
+    int i = -1;
+    std::string name;
+
+    while (++i < 9 && i < this->firstname.length())
+        name.operator+=(this->firstname[i]);
+    if (this->firstname.length() > name.length() + 1)
+        name.operator+=('.');
+    else
+        name.operator+=(this->firstname[i]);
+    while (++i <= 10 && this->firstname.length() <= name.length() - 1)
+        name.operator+=(' ');
+    if (cut)
+        return (name);
+    else
+        return (this->firstname);
 }
-std::string Contact::getLastName(void) const
+std::string Contact::getLastName(int cut) const
 {
-    return (this->lastname);
+    int i = -1;
+    std::string name;
+
+    while (++i < 9 && i < this->lastname.length())
+        name.operator+=(this->lastname[i]);
+    if (this->lastname.length() > name.length() + 1)
+        name.operator+=('.');
+    else
+        name.operator+=(this->lastname[i]);
+    while (++i <= 10 && this->lastname.length() <= name.length() - 1)
+        name.operator+=(' ');
+
+    if (cut)
+        return (name);
+    else
+        return (this->lastname);
 }
-std::string Contact::getNickName(void) const
+std::string Contact::getNickName(int cut) const
 {
-    return (this->nickname);
+    int i = -1;
+    std::string name;
+
+    while (++i < 9 && i < this->nickname.length())
+        name.operator+=(this->nickname[i]);
+    if (this->nickname.length() > name.length() + 1)
+        name.operator+=('.');
+    else
+        name.operator+=(this->nickname[i]);
+    while (++i <= 10 && this->nickname.length() <= name.length() - 1)
+        name.operator+=(' ');
+
+    if (cut)
+        return (name);
+    else
+        return (this->nickname);
 }
-std::string Contact::getPhoneNumber(void) const
+std::string Contact::getPhoneNumber(int cut) const
 {
-    return (this->phoneNb);
+    int i = -1;
+    std::string name;
+
+    while (++i < 9 && i < this->phoneNb.length())
+        name.operator+=(this->phoneNb[i]);
+    if (this->phoneNb.length() > name.length() + 1)
+        name.operator+=('.');
+    else
+        name.operator+=(this->phoneNb[i]);
+    while (++i <= 10 && this->phoneNb.length() <= name.length() - 1)
+        name.operator+=(' ');
+
+    if (cut)
+        return (name);
+    else
+        return (this->phoneNb);
+}
+
+int Contact::getSelected(void) const
+{
+    return (this->_selected);
+}
+
+int Contact::getNumberOf(void) const
+{
+    return (this->_numberof);
+}
+
+int Contact::setSelected(int nb)
+{
+    this->_selected = nb;
+    return (0);
+}
+
+int Contact::setNumberOf(int nb)
+{
+    this->_numberof = nb;
+    return (0);
 }
 
 int Contact::setFirstName(std::string first)
@@ -91,3 +172,6 @@ int Contact::setPhoneNumber(std::string phone)
     this->phoneNb = phone;
     return (1);
 }
+
+int Contact::_selected = 0;
+int Contact::_numberof = 0;
