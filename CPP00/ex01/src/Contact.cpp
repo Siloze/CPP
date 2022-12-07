@@ -21,7 +21,7 @@ std::string Contact::getFirstName(int cut) const
     int i = -1;
     std::string name;
 
-    while (++i < 9 && i < this->firstname.length())
+    while (++i < 9 && i < (int)this->firstname.length())
         name.operator+=(this->firstname[i]);
     if (this->firstname.length() > name.length() + 1)
         name.operator+=('.');
@@ -39,7 +39,7 @@ std::string Contact::getLastName(int cut) const
     int i = -1;
     std::string name;
 
-    while (++i < 9 && i < this->lastname.length())
+    while (++i < 9 && i < (int)this->lastname.length())
         name.operator+=(this->lastname[i]);
     if (this->lastname.length() > name.length() + 1)
         name.operator+=('.');
@@ -58,7 +58,7 @@ std::string Contact::getNickName(int cut) const
     int i = -1;
     std::string name;
 
-    while (++i < 9 && i < this->nickname.length())
+    while (++i < 9 && i < (int)this->nickname.length())
         name.operator+=(this->nickname[i]);
     if (this->nickname.length() > name.length() + 1)
         name.operator+=('.');
@@ -77,7 +77,7 @@ std::string Contact::getPhoneNumber(int cut) const
     int i = -1;
     std::string name;
 
-    while (++i < 9 && i < this->phoneNb.length())
+    while (++i < 9 && i < (int)this->phoneNb.length())
         name.operator+=(this->phoneNb[i]);
     if (this->phoneNb.length() > name.length() + 1)
         name.operator+=('.');
@@ -90,6 +90,26 @@ std::string Contact::getPhoneNumber(int cut) const
         return (name);
     else
         return (this->phoneNb);
+}
+
+std::string Contact::getDarkestSecret(int cut) const
+{
+    int i = -1;
+    std::string name;
+
+    while (++i < 9 && i < (int)this->secret.length())
+        name.operator+=(this->secret[i]);
+    if (this->secret.length() > name.length() + 1)
+        name.operator+=('.');
+    else
+        name.operator+=(this->secret[i]);
+    while (++i <= 10 && this->secret.length() <= name.length() - 1)
+        name.operator+=(' ');
+
+    if (cut)
+        return (name);
+    else
+        return (this->secret);
 }
 
 int Contact::getSelected(void) const
@@ -171,6 +191,22 @@ int Contact::setPhoneNumber(std::string phone)
     }
     this->phoneNb = phone;
     return (1);
+}
+
+int Contact::setDarkestSecret(std::string secret)
+{
+    int i;
+
+    i = -1;
+    while(secret[++i])
+    {
+        if (secret[i] != ' ' && secret[i] != '\n')
+        {
+            this->secret = secret;
+            return (1);
+        }
+    }
+    return (0);
 }
 
 int Contact::_selected = 0;

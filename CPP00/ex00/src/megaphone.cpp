@@ -17,6 +17,8 @@ int main(int ac, char **argv)
 					argv[j][i] -= 32;
 				std::cout << argv[j][i];
 			}
+			if (argv[j + 1])
+				std::cout << " ";
 		}
 		std::cout << std::endl;
 	}

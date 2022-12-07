@@ -12,25 +12,32 @@ void add_contact(Contact *file)
 	while (str.empty() || !file->setFirstName(str))
 	{
 		std::cout << "First Name : " << std::endl;
-		std::cin >> str;
+		std::getline(std::cin, str);
+		std::cout << "STR : '" << str  << "'" << std::endl;
 	}
 	str.clear();
 	while (str.empty() || !file->setLastName(str))
 	{
 		std::cout << "Last Name : " << std::endl;
-		std::cin >> str;
+		std::getline(std::cin, str);
 	}
 	str.clear();
 	while (str.empty() || !file->setNickName(str))
 	{
 		std::cout << "Nick Name : " << std::endl;
-		std::cin >> str;
+		std::getline(std::cin, str);
 	}
 	str.clear();
 	while (str.empty() || !file->setPhoneNumber(str))
 	{
 		std::cout << "Phone Number : " << std::endl;
-		std::cin >> str;
+		std::getline(std::cin, str);
+	}
+	str.clear();
+	while (str.empty() || !file->setDarkestSecret(str))
+	{
+		std::cout << "Darkest secret : " << std::endl;
+		std::getline(std::cin, str);
 	}
 	std::cout << "----------------------" << std::endl;
 	std::cout << "      CONTACT ADD" << std::endl;
@@ -63,7 +70,12 @@ int show_contact(Contact contact, int do_cut, int index)
 		std::cout << std::endl;
 	else
 		std::cout << "|";
-	std::cout << contact.getPhoneNumber(do_cut) << std::endl;
+	std::cout << contact.getPhoneNumber(do_cut);
+	if (!do_cut)
+		std::cout << std::endl;
+	else
+		std::cout << "|";
+	std::cout << contact.getDarkestSecret(do_cut) << std::endl;
 	return (0);
 }
 
@@ -74,7 +86,7 @@ int contact_all(Contact *book)
 
 	i = -1;
 	if (book->getNumberOf())
-		std::cout << "  INDEX   | FIRSTNAME| LASTNAME | NICKNAME | PHONE" << std::endl;
+		std::cout << "  INDEX   | FIRSTNAME| LASTNAME | NICKNAME |  PHONE   | Darkest Secret" << std::endl;
 	else
 		return (1);
 	while (++i < book->getNumberOf())
@@ -95,17 +107,17 @@ int main(void)
 	while (string.compare("EXIT"))
 	{
 		std::cout << "$> ";
-		std::cin >> string;
+		std::getline(std::cin, string);
 		if (!string.compare("ADD"))
 		{
 			if (book->getSelected() > 7)
 				book->setSelected(0);
 			add_contact(&book[book->getSelected()]);
 		}
-		else if (!string.compare("SHOW"))
+		else if (!string.compare("SEARCH"))
 			contact_all(book);
 		else if (string.compare("EXIT"))
-			std::cout << "ALL COMMANDS :\n\t- ADD\n\t- SHOW\n\t- EXIT" << std::endl;
+			std::cout << "ALL COMMANDS :\n\t- ADD\n\t- SEARCH\n\t- EXIT" << std::endl;
 	}
 
 	delete [] book;
