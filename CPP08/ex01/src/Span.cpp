@@ -118,6 +118,10 @@ std::ostream &			operator<<( std::ostream & o, Span & i )
 	return o;
 }
 
+void		Span::fillByIterator(std::list<int>::iterator begin, std::list<int>::iterator end)
+{
+	if 
+}
 
 /*
 ** --------------------------------- METHODS ----------------------------------

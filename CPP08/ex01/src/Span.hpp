@@ -20,7 +20,8 @@ class Span
 		void 		addNumber( int nb );
 		unsigned int	getSize( void ) const;
 		int			shortestSpan( void ); 
-		int			longestSpan( void ); 
+		int			longestSpan( void );
+		void		fillByIterator(std::list<int>::iterator begin, std::list<int>::iterator end);
 	private:
 		std::list<int>		_content;
 		unsigned int	_max;
