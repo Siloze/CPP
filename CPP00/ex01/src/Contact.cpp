@@ -28,7 +28,7 @@ std::string Contact::getFirstName(int cut) const
     else
         name.operator+=(this->firstname[i]);
     while (++i <= 10 && this->firstname.length() <= name.length() - 1)
-        name.operator+=(' ');
+        name.insert(name.begin(), ' ');
     if (cut)
         return (name);
     else
@@ -46,7 +46,7 @@ std::string Contact::getLastName(int cut) const
     else
         name.operator+=(this->lastname[i]);
     while (++i <= 10 && this->lastname.length() <= name.length() - 1)
-        name.operator+=(' ');
+        name.insert(name.begin(), ' ');
 
     if (cut)
         return (name);
@@ -65,8 +65,7 @@ std::string Contact::getNickName(int cut) const
     else
         name.operator+=(this->nickname[i]);
     while (++i <= 10 && this->nickname.length() <= name.length() - 1)
-        name.operator+=(' ');
-
+        name.insert(name.begin(), ' ');
     if (cut)
         return (name);
     else
@@ -84,8 +83,7 @@ std::string Contact::getPhoneNumber(int cut) const
     else
         name.operator+=(this->phoneNb[i]);
     while (++i <= 10 && this->phoneNb.length() <= name.length() - 1)
-        name.operator+=(' ');
-
+        name.insert(name.begin(), ' ');
     if (cut)
         return (name);
     else

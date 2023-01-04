@@ -13,7 +13,6 @@ void add_contact(Contact *file)
 	{
 		std::cout << "First Name : " << std::endl;
 		std::getline(std::cin, str);
-		std::cout << "STR : '" << str  << "'" << std::endl;
 	}
 	str.clear();
 	while (str.empty() || !file->setLastName(str))
@@ -70,12 +69,18 @@ int show_contact(Contact contact, int do_cut, int index)
 		std::cout << std::endl;
 	else
 		std::cout << "|";
-	std::cout << contact.getPhoneNumber(do_cut);
 	if (!do_cut)
-		std::cout << std::endl;
+	{
+		std::cout << contact.getPhoneNumber(do_cut);
+		if (!do_cut)
+			std::cout << std::endl;
+		else
+			std::cout << "|";
+		std::cout << contact.getDarkestSecret(do_cut) << std::endl;
+	}
 	else
-		std::cout << "|";
-	std::cout << contact.getDarkestSecret(do_cut) << std::endl;
+		std::cout << std::endl;
+
 	return (0);
 }
 
@@ -86,7 +91,7 @@ int contact_all(Contact *book)
 
 	i = -1;
 	if (book->getNumberOf())
-		std::cout << "  INDEX   | FIRSTNAME| LASTNAME | NICKNAME |  PHONE   | Darkest Secret" << std::endl;
+		std::cout << "  INDEX   | FIRSTNAME| LASTNAME | NICKNAME |" << std::endl;
 	else
 		return (1);
 	while (++i < book->getNumberOf())
@@ -94,18 +99,19 @@ int contact_all(Contact *book)
 	while (str.length() != 1 || (str[0] > '8' || str[0] < '0') || str[0] - '0' >= book->getNumberOf())
 	{
 		std::cout << "Choose an Index > ";
-		std::cin >> str;
+		std::getline(std::cin, str);
 	}
 	return (show_contact(book[str[0] - '0'], 0, str[0] - '0'));
 }
 
 int main(void)
 {
-	Contact *book = new Contact[8];    
+	Contact book[8];    
 	std::string string;
 
 	while (string.compare("EXIT"))
 	{
+		string.clear();
 		std::cout << "$> ";
 		std::getline(std::cin, string);
 		if (!string.compare("ADD"))
@@ -119,7 +125,5 @@ int main(void)
 		else if (string.compare("EXIT"))
 			std::cout << "ALL COMMANDS :\n\t- ADD\n\t- SEARCH\n\t- EXIT" << std::endl;
 	}
-
-	delete [] book;
-
+	return (0);
 }

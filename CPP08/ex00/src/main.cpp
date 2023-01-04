@@ -21,4 +21,5 @@ int main(void)
     showIterator(iterator, tab);
     iterator = easyfind(tab,2);
     showIterator(iterator, tab);
+    return (0);
 }

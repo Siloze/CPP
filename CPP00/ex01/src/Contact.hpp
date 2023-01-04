@@ -25,8 +25,8 @@ class Contact {
 		int         setSelected(int nb);
 		int         getNumberOf(void) const;
 		int         setNumberOf(int nb);
-		int         setFirstName(std::string first);
-		int         setLastName(std::string last);
+		int			setFirstName(std::string first);
+		int			setLastName(std::string last);
 		int         setNickName(std::string nick);
 		int         setPhoneNumber(std::string phone);
 		int         setDarkestSecret(std::string secret);

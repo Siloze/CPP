@@ -25,19 +25,10 @@ _max(src._max)
 }
 
 
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
 Span::~Span()
 {
 	return ;
 }
-
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
 
 Span &				Span::operator=( Span const & rhs )
 {
@@ -46,13 +37,13 @@ Span &				Span::operator=( Span const & rhs )
 	return *this;
 }
 
-int & 				Span::access(const unsigned int index)
+int & 				Span::access(const unsigned int index) const
 {
 	if (index >= this->_content.size())
 		throw std::overflow_error("Acces Index too high !");	
-	std::list<int>::iterator it = this->_content.begin();
+	std::list<int>::const_iterator it = this->_content.begin();
 	std::advance(it, index);
-	return (*it);
+	return (const_cast<int &>(*it));
 }
 
 int					Span::shortestSpan( void )
@@ -107,30 +98,24 @@ unsigned int Span::getSize( void ) const
 	return this->_content.size();
 }
 
-std::ostream &			operator<<( std::ostream & o, Span & i )
+std::ostream &			operator<<( std::ostream & o, Span const & i )
 {
-	o << "[ ";
+	o << "[Size: " << i.getSize() << " {";
 	for (unsigned int k = 0; k < i.getSize(); k++)
 	{
-		o << "{" << i.access(k) << "} ";
+		o << i.access(k) << "";
+		if (k != i.getSize() - 1)
+			o << ", ";
 	}
-	o << i.getSize() << "]";
+	o << "}]" << std::endl;
 	return o;
 }
 
 void		Span::fillByIterator(std::list<int>::iterator begin, std::list<int>::iterator end)
 {
-	if 
+	if (this->getSize() + std::distance(begin, end) > this->_max)
+		throw std::length_error("Span::fillByIterator : Trying to add element(s) to an Span with max elements !");
+	else
+		this->_content.insert(this->_content.end(), begin, end);
+	return ;
 }
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
-
-/* ************************************************************************** */

@@ -16,12 +16,13 @@ class Span
 		~Span();
 
 		Span &		operator=( Span const & rhs );
-		int	&		access(const unsigned int nb);
+		int	&		access(const unsigned int nb) const;
 		void 		addNumber( int nb );
 		unsigned int	getSize( void ) const;
 		int			shortestSpan( void ); 
 		int			longestSpan( void );
 		void		fillByIterator(std::list<int>::iterator begin, std::list<int>::iterator end);
+	
 	private:
 		std::list<int>		_content;
 		unsigned int	_max;
@@ -29,5 +30,4 @@ class Span
 };
 
 std::ostream &			operator<<( std::ostream & o, Span const & i );
-
-#endif /* ************************************************************ SPAN_H */
+#endif
