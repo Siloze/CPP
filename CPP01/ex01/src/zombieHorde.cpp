@@ -8,9 +8,6 @@ Zombie* zombieHorde( int N, std::string name )
 	i = -1;
 	stack = new Zombie[N];
 	while (++i < N)
-	{
 		stack[i].setName(name);
-		stack[i].announce();
-	}
 	return (&stack[0]);
 }

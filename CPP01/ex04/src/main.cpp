@@ -3,7 +3,7 @@
 
 std::string replace(std::string line, std::string search, std::string replace)
 {
-	int i = -1;
+	size_t i = -1;
 
 	while (++i < line.length())
 	{
@@ -30,7 +30,7 @@ int main(int ac, char **av)
 	line.operator=(av[1]);
 	file.open(line);
 	if (!file.is_open())
-		return (printf("Wrong args\n"));
+		return (printf("File can't be open\n"));
 	line.operator+=(".replace");
 	file_replace.open(line, std::ios::out);
 	if (!file_replace.is_open())

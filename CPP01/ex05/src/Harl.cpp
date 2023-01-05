@@ -38,6 +38,7 @@ void Harl::complain( std::string level )
 {
 	Harl tmp;
 	void (Harl::*pt)( void );
+
 	switch (level.at(0))
 	{
 		case 'd' :
