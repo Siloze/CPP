@@ -12,6 +12,7 @@ Dog::Dog( const Dog & src )
 {
 	std::cout << "DOG COPY CONSTRUCTOR" << std::endl;
 	this->brain = new Brain;
+	*(this->brain) = *(src.getBrain());
 	this->setType("Dog");
 	return ;
 }
@@ -26,12 +27,14 @@ Dog::~Dog()
 Dog &				Dog::operator=( Dog const & rhs )
 {
 	std::cout << "DOG CPY" << std::endl;
-	this->setType(rhs.getType());
+	delete this->brain;
+	this->brain = new Brain;
 	*(this->brain) = *(rhs.getBrain());
+	this->setType(rhs.getType());
 	return *this;
 }
 
-Animal &				Dog::operator=( Animal const & rhs )
+AAnimal &				Dog::operator=( AAnimal const & rhs )
 {
 	std::cout << "DOG ANIMAL CPY" << std::endl;
 	this->setType(rhs.getType());

@@ -7,9 +7,9 @@ type("Default")
 	return ;
 }
 
-Animal::Animal( const Animal & src ) :
-type("Default")
+Animal::Animal( const Animal & src )
 {
+	this->setType(src.getType());
 	std::cout << "ANIMAL COPIE CONSTRUCTOR" << std::endl;
 	return ;
 }
@@ -20,9 +20,8 @@ Animal::~Animal()
 	return ;
 }
 
-Animal &Animal::operator=( Animal const & src )
+Animal &				Animal::operator=( Animal const & src )
 {
-	std::cout << "ANIMAL CPY" << std::endl;
 	this->setType(src.getType());
 	return *this;
 }

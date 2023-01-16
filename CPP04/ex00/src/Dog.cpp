@@ -10,7 +10,7 @@ Dog::Dog()
 Dog::Dog( const Dog & src )
 {
 	std::cout << "DOG COPY CONSTRUCTOR" << std::endl;
-	this->setType("Dog");
+	this->setType(src.getType());
 	return ;
 }
 

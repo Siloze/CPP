@@ -7,9 +7,9 @@ type("Default")
 	return ;
 }
 
-WrongAnimal::WrongAnimal( const WrongAnimal & src ) :
-type("Default")
+WrongAnimal::WrongAnimal( const WrongAnimal & src )
 {
+	this->setType(src.getType());
 	std::cout << " WRONG ANIMAL COPIE CONSTRUCTOR" << std::endl;
 	return ;
 }

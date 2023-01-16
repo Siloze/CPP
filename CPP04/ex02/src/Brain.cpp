@@ -7,6 +7,8 @@ Brain::Brain()
 
 Brain::Brain( const Brain & src )
 {
+	for (int i = 0; i < 100; i++)
+		this->ideas[i] = src.ideas[i];
 	return ;
 }
 

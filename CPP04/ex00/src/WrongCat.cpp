@@ -10,7 +10,7 @@ WrongCat::WrongCat()
 WrongCat::WrongCat( const WrongCat & src )
 {
 	std::cout << "WRONG CAT COPY CONSTRUCTOR" << std::endl;
-	this->setType("WrongCat");
+	this->setType(src.getType());
 	return ;
 }
 

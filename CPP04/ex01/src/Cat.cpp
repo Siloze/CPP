@@ -12,6 +12,7 @@ Cat::Cat( const Cat & src )
 {
 	std::cout << "CAT COPY CONSTRUCTOR" << std::endl;
 	this->brain = new Brain;
+	*(this->brain) = *(src.getBrain());
 	this->setType("Cat");
 	return ;
 }
@@ -34,8 +35,10 @@ Cat &				Cat::operator=( Cat const & rhs )
 Animal &				Cat::operator=( Animal const & rhs )
 {
 	std::cout << "CAT ANIMAL CPY" << std::endl;
-	this->setType(rhs.getType());
+	delete this->brain;
+	this->brain = new Brain;
 	*(this->brain) = *(rhs.getBrain());
+	this->setType(rhs.getType());
 	return *this;
 }
 

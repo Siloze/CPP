@@ -7,9 +7,9 @@ type("Default")
 	return ;
 }
 
-AAnimal::AAnimal( const AAnimal & src ) :
-type("Default")
+AAnimal::AAnimal( const AAnimal & src )
 {
+	this->setType(src.getType());
 	std::cout << "ANIMAL COPIE CONSTRUCTOR" << std::endl;
 	return ;
 }
