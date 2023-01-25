@@ -6,11 +6,11 @@ MultiType::MultiType()
 }
 
 MultiType::MultiType(char *input) :
+selected_value(""),
 _int_value(0),
-_float_value(0.1f),
-_double_value(0.1f),
-_char_value(0),
-selected_value("")
+_float_value(0.0f),
+_double_value(0.0f),
+_char_value(0)
 {
 	setSelectedValue((char *)check_special(input).c_str());
 	if (this->getSelectedValue() == "INT")
@@ -25,6 +25,7 @@ selected_value("")
 
 MultiType::MultiType( const MultiType & src )
 {
+	*this = src;
 	return ;
 }
 
@@ -34,16 +35,17 @@ MultiType::~MultiType()
 
 MultiType &				MultiType::operator=( MultiType const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	this->_char_value = rhs._char_value;
+	this->_double_value = rhs._double_value;
+	this->_float_value = rhs._float_value;
+	this->_int_value = rhs._int_value;
+	this->selected_value = rhs.selected_value;
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, MultiType const & i )
 {
-	//o << "Value = " << i.getValue();
+	(void)i;
 	return o;
 }
 
@@ -75,10 +77,10 @@ void					MultiType::setSelectedValue (char *value)
 {
 	if (is_int(value))
 		selected_value = "INT";
-	else if (is_float(value))
-		selected_value = "FLOAT";
 	else if (is_double(value))
 		selected_value = "DOUBLE";
+	else if (is_float(value))
+		selected_value = "FLOAT";
 	else if (is_char(value))
 		selected_value = "CHAR";
 	else
@@ -126,27 +128,27 @@ void					MultiType::setAllValueFromChar(char value)
 
 void				MultiType::showAllValue( void ) const
 {
-	if (CanConvertToInt(this->_double_value) && this->getSelectedValue() != "inf" && this->getSelectedValue() != "nan")
+	if (CanConvertToInt(this->_double_value) && this->getSelectedValue() != "inf" && this->getSelectedValue() != "nan" && this->getSelectedValue() != "-inf")
 		std::cout << "Int : " << this->_int_value << std::endl;
 	else
 		std::cout << "Int : " << "Impossible" << std::endl;
-	if (CanConvertToFloat(this->_double_value))
+	if (this->getSelectedValue() == "nan")
+		std::cout << "Float : " << "nanf" << std::endl;
+	else if (this->getSelectedValue() == "inf" || this->getSelectedValue() == "-inf")
+		std::cout << "Float : " << this->getSelectedValue() << "f" << std::endl;
+	else 	if (CanConvertToFloat(this->_double_value))
 	{
 		std::cout << "Float : " << this->_float_value;
 		if (this->_float_value == this->_int_value)
 			std::cout << ".00";
 		std::cout << "f" << std::endl;
 	}
-	else if (this->getSelectedValue() == "nan")
-		std::cout << "Float : " << "nanf" << std::endl;
-	else if (this->getSelectedValue() == "inf")
-		std::cout << "Float : " << "inff" << std::endl;
 	else
 		std::cout << "Float : Impossible" << std::endl;
 	if (this->getSelectedValue() == "nan")
 		std::cout << "Double : " << "nan" << std::endl;
-	else if (this->getSelectedValue() == "inf")
-		std::cout << "Double : " << "inf" << std::endl;
+	else if (this->getSelectedValue() == "inf" || this->getSelectedValue() == "-inf")
+		std::cout << "Double : " << this->getSelectedValue() << std::endl;
 	else
 	{
 		std::cout << "Double : " << this->_double_value;

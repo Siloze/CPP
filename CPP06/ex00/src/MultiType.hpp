@@ -4,6 +4,7 @@
 # include <iostream>
 # include <string>
 
+bool	is_valid( char *input );
 bool	ft_isdigit( char c );
 bool    is_numeric( char *nb );
 bool    is_int( char *nb );
@@ -46,8 +47,6 @@ class MultiType
 		float _float_value;
 		double _double_value;
 		char _char_value;
-		bool is_infinite;
-		bool is_nan;
 
 };
 
