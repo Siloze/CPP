@@ -8,7 +8,7 @@ SRC				:=	$(shell find src -name "*.cpp")
 ODIR			:=	obj/
 OBJ				:=	$(subst $(SDIR),$(ODIR), ${SRC:.cpp=.o})
 
-CC				:=	clang++
+CC				:=	c++
 CFLG			:=	-Wall -Wextra -Werror -std=c++98
 
 $(ODIR)%.o		: $(SDIR)%.cpp

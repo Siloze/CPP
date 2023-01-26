@@ -10,19 +10,19 @@ class Array
 
 	public:
 		Array<T>() :
-		_size(0),
-		_content(NULL)
+		_content(NULL),
+		_size(0)
 		{
 			std::cout << "DEFAULT CONSTRUCTOR" << std::endl;
 			return ;
 		}
 
-		Array<T>(const unsigned int size) :
-		_size(size)
+		Array<T>(const unsigned int size)
 		{
 			std::cout << "SIZE CONSTRUCTOR" << std::endl;
 			if ((int)size < 0)
 				throw std::overflow_error("Size can not be under 0");
+			this->_size = size;
 			this->_content = new T[this->_size];
 			return ;
 		}
@@ -31,8 +31,8 @@ class Array
 		{
 			std::cout << "CPY CONSTRUCTOR" << std::endl;
 			this->_size = src._size;
-			this->_content = new T[this->getSize()];
-			for (int i = 0; i < src._size; i++)
+			this->_content = new T[this->size()];
+			for (size_t i = 0; i < src._size; i++)
 				this->getContent()[i] = src._content[i];
 			return ;
 		}
@@ -42,18 +42,18 @@ class Array
 		}
 		Array &		operator=( Array const & rhs )
 		{
-			if (this->getSize())
+			if (this->size())
 				delete [] this->_content;
-			this->_size = rhs.getSize();
-			this->_content = new T[this->getSize()];
-			for (int i = 0; i < rhs.getSize(); i++)
+			this->_size = rhs.size();
+			this->_content = new T[this->size()];
+			for (size_t i = 0; i < rhs.size(); i++)
 				this->getContent()[i] = rhs.getContent()[i];
 			return *this;
 		}
 
 		T &			operator[](const int index)
 		{
-			if (index < 0 || index >= this->getSize())
+			if (index < 0 || index >= (int)this->size())
 				throw std::overflow_error("Overflow error");
 			else
 				return (this->getContent()[index]);
@@ -62,7 +62,7 @@ class Array
 		{
 			return this->_content;
 		}
-		size_t	getSize( void ) const
+		size_t	size( void ) const
 		{
 			return this->_size;
 		}
@@ -76,11 +76,11 @@ template<typename T>
 std::ostream &			operator<<( std::ostream & o, Array<T> const & i )
 {
 	o << "[ ";
-	for (int k = 0; k < i.getSize(); k++)
+	for (size_t k = 0; k < i.size(); k++)
 	{
 		o << "{" << i.getContent()[k] << "} ";
 	}
-	o << i.getSize() << "]";
+	o << i.size() << "]";
 	return o;
 }
 
