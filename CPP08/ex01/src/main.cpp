@@ -4,7 +4,7 @@ int main()
 {
 	Span sp = Span(4);
 	sp.addNumber(-32);
-	sp.addNumber(2);
+	sp.addNumber(-31);
 	sp.addNumber(1932);
     sp.addNumber(39);
     try
@@ -16,7 +16,7 @@ int main()
         std::cerr << e.what() << '\n';
     }
 	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl << std::endl;
 
 	Span sp2 = Span(100);
 	srand(time(NULL));

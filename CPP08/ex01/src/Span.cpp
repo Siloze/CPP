@@ -58,7 +58,7 @@ int					Span::shortestSpan( void )
 		for (unsigned int k = 0; k < this->getSize(); k++)
 		{
 			value = this->access(i) - this->access(k);
-			if (i != k && (value < distance && value > 0))
+			if (i != k && (value < distance && value >= 0))
 				distance = value;
 		}
 	}

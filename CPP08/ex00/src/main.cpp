@@ -19,7 +19,15 @@ int main(void)
     tab.push_back(389);
     iterator = easyfind(tab,389);
     showIterator(iterator, tab);
-    iterator = easyfind(tab,2);
-    showIterator(iterator, tab);
+    try
+    {
+        iterator = easyfind(tab,2);
+        showIterator(iterator, tab);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
     return (0);
 }

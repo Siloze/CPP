@@ -53,7 +53,7 @@ class Array
 
 		T &			operator[](const int index)
 		{
-			if (index < 0 || index >= (int)this->size())
+			if (index < 0 || index > (int)this->size())
 				throw std::overflow_error("Overflow error");
 			else
 				return (this->getContent()[index]);
