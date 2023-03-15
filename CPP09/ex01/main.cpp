@@ -72,6 +72,9 @@ int main(int ac, char **av)
                 return(send_error("Error: bad charactere ", av[1][i]));
         }
     }
-    if (stack.size())
-        std::cout << stack.top() <<std::endl;
+    while (stack.size())
+    {
+        std::cout << stack.top() << " | ";
+        stack.pop();
+    }
 }
