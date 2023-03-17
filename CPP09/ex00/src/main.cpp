@@ -1,4 +1,4 @@
-#include "includes.hpp"
+#include "BitcoinExchange.hpp"
 
 std::string getDate(std::string &line, char c)
 {
@@ -56,10 +56,10 @@ void parseDate(std::string &date, std::string &year, std::string &mouth, std::st
 
 double getValueByDate(Date &date, CONTAINER &data)
 {
-	for (int i = 0; i < data.size(); i++)
+	for (size_t i = 0; i < data.size(); i++)
 	{
 
-		if (date > data.at(i).first)
+		if (date >= data.at(i).first)
 		{
 			if (i + 1 < data.size() && date < data.at(i + 1).first)
 			{
@@ -67,6 +67,8 @@ double getValueByDate(Date &date, CONTAINER &data)
 					return std::stod(data.at(i + 1).second);
 				return std::stod(data.at(i).second);
 			}
+			else if (i + 1 == data.size())
+				return std::stod(data.at(i).second);
 		}
 	}
 	return -1;
@@ -78,7 +80,7 @@ void processInput(Date date, std::string value, CONTAINER &data)
 	if (isValueValid(value))
 	{
 	   result = getValueByDate(date, data) * std::stod(value);
-	   if (result > 0)
+	   if (result >= 0)
 	   		std::cout << date << " => " << std::stod(value) << " = " << result << std::endl;
 		else
 			std::cout << "Error: there isn't data near " << date << " yet." << std::endl;
@@ -87,12 +89,29 @@ void processInput(Date date, std::string value, CONTAINER &data)
 		std::cout << "Error: invalid value" << value << "." << std::endl;
 }
 
+int send_error(std::string msg, std::string var = 0)
+{
+	std::cout << msg << var;
+	std::cout << std::endl;
+	return -1;
+}
+
 int main(int ac, char **av)
 {
-	CONTAINER data = initData("data.csv");
+	CONTAINER data = initData("src/data.csv");
 	std::fstream userFile;
 	std::string line;
+	if (ac != 2)
+		return send_error("Error: invalid number of arguments.");
 	userFile.open(av[1]);
+	if (userFile.is_open() == false)
+		return send_error("Error: invalid file named ", av[1]);
+	if (userFile.peek() == std::ifstream::traits_type::eof())
+		return send_error("Error: empty file named ", av[1]);
+	if (userFile.peek() == '\n')
+		return send_error("Error: empty file named ", av[1]);
+	if (data.size() == 0)
+		return send_error("Error: invalid data.csv file.");
 	while (!userFile.eof())
 	{
 		std::getline(userFile, line);

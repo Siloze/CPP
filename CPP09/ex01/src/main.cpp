@@ -1,6 +1,4 @@
-#include <iostream>
-#include <stack>
-#include <vector>
+#include "RPN.hpp"
 
 #define CONTAINER std::stack<std::string>
 
@@ -25,23 +23,6 @@ void processStack(CONTAINER &stack, char c)
 
 }
 
-bool isOperation(char c)
-{
-    return c == '+' || c == '-' || c == '*' || c == '/';
-}
-
-bool isNumber(char c)
-{
-    return c >= '0' && c <= '9';
-}
-
-int send_error(std::string msg, char var = 0)
-{
-    std::cout << msg << var;
-    std::cout << std::endl;
-    return -1;
-}
-
 int main(int ac, char **av)
 {
     CONTAINER stack;
@@ -62,9 +43,7 @@ int main(int ac, char **av)
             }
             else if (isNumber(av[1][i]))
             {
-                while (isNumber(av[1][i]))
-                    sent+= av[1][i++];
-                i--;
+                sent+= av[1][i];
                 stack.push(sent);
                 sent.clear();
             }
@@ -77,4 +56,5 @@ int main(int ac, char **av)
         std::cout << stack.top() << " | ";
         stack.pop();
     }
+    std::cout << std::endl;
 }

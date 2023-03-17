@@ -1,4 +1,4 @@
-#include "includes.hpp"
+#include "BitcoinExchange.hpp"
 
 bool isDateValid(std::string &date)
 {
@@ -6,7 +6,7 @@ bool isDateValid(std::string &date)
         date.erase(date.size() - 1);
     if (date.size() != 10)
         return false;
-    for(int i = 0; i != date.size(); i++)
+    for(size_t i = 0; i != date.size(); i++)
     {
         if (i != 4 && i != 7 && i != 10)
         {
