@@ -89,7 +89,7 @@ void processInput(Date date, std::string value, CONTAINER &data)
 		std::cout << "Error: invalid value" << value << "." << std::endl;
 }
 
-int send_error(std::string msg, std::string var = 0)
+int send_error(std::string msg, std::string var = "")
 {
 	std::cout << msg << var;
 	std::cout << std::endl;
@@ -98,11 +98,11 @@ int send_error(std::string msg, std::string var = 0)
 
 int main(int ac, char **av)
 {
+	if (ac != 2)
+		return send_error("Error: invalid number of arguments.");
 	CONTAINER data = initData("src/data.csv");
 	std::fstream userFile;
 	std::string line;
-	if (ac != 2)
-		return send_error("Error: invalid number of arguments.");
 	userFile.open(av[1]);
 	if (userFile.is_open() == false)
 		return send_error("Error: invalid file named ", av[1]);
