@@ -24,7 +24,7 @@ La piscine CPP est un ensemble de groupes d'exercices proposés par l'école 42 
 ## **Utilisation**
 Vous pouvez naviguer à travers les différents dossiers pour voir les projets et les exercices que j'ai réalisés. Chaque projet et exercice est placé dans un dossier portant le nom de la partie correspondante.
 
-Pour exécuter un projet ou un exercice, il suffit de se rendre dans le dossier correspondant et de compiler le code à l'aide du Makefile fourni. Vous pouvez également exécuter le programme en utilisant les instructions fournies dans le README de chaque projet/exercice.
+Pour exécuter un projet ou un exercice, il suffit de se rendre dans le dossier correspondant et de compiler le code à l'aide du Makefile fourni.
 
 ## **Avertissement**
 Les projets et exercices de cette piscine sont destinés à des fins éducatives seulement. Ne copiez pas le code pour soumettre des travaux académiques et ne l'utilisez pas pour des projets commerciaux ou professionnels.
