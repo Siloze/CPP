@@ -1,4 +1,4 @@
-# CPP
+# Piscine CPP
 Bienvenue dans ma piscine CPP, une série de projets et d'exercices que j'ai réalisés dans le cadre de l'apprentissage du langage de programmation C++.
 
 ## **Description**
